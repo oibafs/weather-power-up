@@ -59,3 +59,5 @@ various guides and documentation.
 
 You can jump right to
 [Power-Ups Documentation](https://developers.trello.com/reference#power-ups-intro)
+
+Force commit
