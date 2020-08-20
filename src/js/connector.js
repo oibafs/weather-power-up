@@ -27,6 +27,7 @@ const getWeatherBadges = (t, opts) =>
       // if the card doesn't have a location at all, we won't show any badges
       return [];
     }
+    console.log(card.coordinates);
 
     const tempBadge = {
       dynamic(trello) {
