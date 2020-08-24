@@ -100,10 +100,18 @@ const getWeatherBadges = (t, opts) =>
     return badges;
   });
 
+const postponeCard = (t, options) => {
+  return t.card('all')
+  .then(function (card) {
+    console.log(JSON.stringify(card, null, 2));
+  });
+}
+
 const displayCardButton = (t, options) => {
   return [{
     icon: 'https://cdn.glitch.com/1b42d7fe-bda8-4af8-a6c8-eff0cea9e08a%2Frocket-ship.png?1494946700421',
     text: 'Postpone card',
+    callback: postponeCard,
   }];
 }
 
