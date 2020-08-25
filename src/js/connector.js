@@ -100,6 +100,14 @@ const getWeatherBadges = (t, opts) =>
     return badges;
   });
 
+const showMenu = () => {
+  alert('Beleza! Autorizado.')
+}
+  
+const showIframe = () => {
+  alert('Fudeu! Não autorizado.')
+}
+
 const getAPIClient = (t) => {
   return t.getRestApi()
   // We now have an instance of the API client.
