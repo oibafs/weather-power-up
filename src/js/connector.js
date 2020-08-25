@@ -122,13 +122,11 @@ const getAPIClient = (t) => {
   .isAuthorized()
   .then(function(isAuthorized) {
     if (isAuthorized) {
-      console.log("Authorized");
       return [{
         text: 'Weather Power-Up',
         callback: showMenu
       }];
     } else {
-      console.log("Not authorized");
       return [{
         text: 'Weather Power-Up',
         callback: showIframe
