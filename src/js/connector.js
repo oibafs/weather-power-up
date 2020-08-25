@@ -100,10 +100,32 @@ const getWeatherBadges = (t, opts) =>
     return badges;
   });
 
+const getAPIClient = (t) => {
+  return t.getRestApi()
+  // We now have an instance of the API client.
+  .isAuthorized()
+  .then(function(isAuthorized) {
+    if (isAuthorized) {
+      console.log("Authorized");
+      return [{
+        text: 'Weather Power-Up',
+        callback: showMenu
+      }];
+    } else {
+      console.log("Not authorized");
+      return [{
+        text: 'Weather Power-Up',
+        callback: showIframe
+      }];
+    }
+  })
+}
+
 const postponeCard = (t, options) => {
   return t.card('all')
   .then(function (card) {
     console.log(JSON.stringify(card, null, 2));
+    getAPIClient;
   });
 }
 
@@ -115,25 +137,32 @@ const displayCardButton = (t, options) => {
   }];
 }
 
+const showSettings = (t) => {
+  return t.popup({
+    title: t.localizeKey('weather-settings'),
+    url: './settings.html',
+    height: 281
+  })
+}
+
 window.TrelloPowerUp.initialize(
   {
-/*    'card-buttons': function(t, options){
-      return [{
-        icon: 'https://cdn.glitch.com/1b42d7fe-bda8-4af8-a6c8-eff0cea9e08a%2Frocket-ship.png?1494946700421',
-        text: 'Postpone card',
-      }];
-    },*/
+// /*    'card-buttons': function(t, options){
+//       return [{
+//         icon: 'https://cdn.glitch.com/1b42d7fe-bda8-4af8-a6c8-eff0cea9e08a%2Frocket-ship.png?1494946700421',
+//         text: 'Postpone card',
+//       }];
+//     },*/
     'card-buttons': displayCardButton,
     'card-badges': getWeatherBadges,
     'card-detail-badges': getWeatherBadges,
-    'show-settings': t => {
-      return t.popup({
-        title: t.localizeKey('weather-settings'),
-        url: './settings.html',
-        height: 281,
-      });
+    'show-settings': showSettings,
     },
-  },
+    {
+      appKey: '039f30a96f8f3e440addc095dd42f87d',
+      appName: 'Weather Power-up'
+    },
+  // },
   {
     localization: localizationSettings,
   }
