@@ -100,13 +100,21 @@ const getWeatherBadges = (t, opts) =>
     return badges;
   });
 
-// const showMenu = () => {
-//   alert('Beleza! Autorizado.')
-// }
+  function showIframe(t) {
+    return t.popup({
+      title: 'Authorize to continue',
+      url: './authorize.html'
+    });
+  }
   
-// const showIframe = () => {
-//   alert('Fudeu! Não autorizado.')
-// }
+  function showMenu(t) {
+    return t.popup({
+      title: 'Do something cool',
+      items: [
+        // …
+      ]
+    });
+  }
 
 const getAPIClient = (t) => {
   return t.getRestApi()
