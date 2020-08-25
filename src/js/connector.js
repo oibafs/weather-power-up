@@ -124,8 +124,8 @@ const getAPIClient = (t) => {
 const postponeCard = (t, options) => {
   return t.card('all')
   .then(function (card) {
-    console.log(JSON.stringify(card, null, 2));
-    getAPIClient;
+    // console.log(JSON.stringify(card, null, 2));
+    getAPIClient(t);
   });
 }
 
